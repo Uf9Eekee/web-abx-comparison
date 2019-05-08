@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>ABX Test: FLAC vs MP3 compression</title>
+		<link rel="stylesheet" href="css/style.css">
+		<meta name="author" content="Claes Johansson">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta name="robots" content="index,follow">
+	</head>
+	
+	<body>
+		<header>
+			<h1>ABX Test: FLAC vs MP3 compression</h1>
+		</header>
+
+		<div id="introduction">
+		<h3>Introduction</h3>
+			<p>ABX testing is a concept used in audio engineering to compare audio tracks. It was designed in 1977 as a refinement of previous A/B tests. The subject is presented with two tracks, for example one track that is uncompressed (A) and another that uses some compression algorithm (B), and is then presented with a third track, which can be either of them (X). The objective of the test subject is to determine whether track X is identical to A or B. This test can be used to determine if a lossy compression algorithm is distinguishable from the uncompressed material to a human ear, something that's very hard to do without actual human testing, as material that objectively is different doesn't necessarily sound different due to the limitations of human hearing, which is what makes lossy audio compression useful in high fidelity contexts, such as digital music distribution.</p>
+
+			<p>The presented demo is a classical ABX test using an uncompressed FLAC file, sourced from the CD release, as A, and an MP3 file (converted using the LAME codec), then converted back to FLAC, as B. You're given the option for 128, 160 or 192 kbps bit rate, which range from most destructive to least. The chosen demonstration track is "You're the storm" by The Cardigans, from the 2003 album Long gone before daylight. This is my first reference track when trying out new audio equipment, and presents useful challenges for compression algorithms, with a comparatively wide dynamic range (for a pop song), a wide variety of instrumentation, from isolated vocals+acoustic guitars to a full orchestra, good stereo separation, and world-class mixing and mastering.</p>
+
+			<p>Although there have been several large scale experiments to the effect of the standard ABX test done online to determine how well people distinguish between uncompressed audio and audio compressed with different lossy compression algorithms, none of those that I know of have used anything comparable to correct ABX protocol. Rather, they relied on distributing audio files and making the user fill out a form ad-hoc. Although this particular test will not be put online for copyright reasons, it could one day be used for a proper online ABX testing facility. Using the FLAC audio format, this test should work using current versions of Firefox, Chrome and Safari.</p>
+
+			<p>Treating this as an experiment, my long-standing hypothesis is that most people can't distinguish between 192 kbps MP3 and uncompressed material. If you know what to listen for, and do so with determination, then it's definitely possible. The test will run for 20 iterations, and at the end you will be presented with the results. It is not required to listen to the entire song for each iteration. Please submit results together with the final grade for this class.Good luck!</p>
+			
+			<input type="button" class="startButton" id="startButton128" value="128 kbps MP3" onclick="startABX('128')">
+			<input type="button" class="startButton" id="startButton160" value="160 kbps MP3" onclick="startABX('160')">
+			<input type="button" class="startButton" id="startButton192" value="192 kbps MP3" onclick="startABX('192')">
+			</div>
+
+			
+
+			<div id="abx">
+
+				<audio id="audioA"></audio>
+				<audio id="audioB"></audio>
+				<audio id="audioX"></audio>
+
+				<div id="testInfo">
+					<label id="currentTestInfo"></label>
+					<label id="progressLabel">Progress: 0/20</label>
+				</div>
+
+				<div id="channelSelection">
+					<h5>Output channel:</h5>
+					<input type="button" id="a" value="Output: A" onclick="selectA()"><br>
+					<input type="button" id="b" value="Output: B" onclick="selectB()"><br>
+					<input type="button" id="x" value="Output: X" onclick="selectX()"><br>
+				</div>
+
+				<div id="playerControls">
+					<h5>Player controls:</h5>
+					<input type="button" id="playPauseToggleButton" value="Play" onclick="playPauseToggle()">
+					<input type="button" id="loopTargetToggleButton" value="Set start marker" onclick="loopTargetToggle()">
+					<div id="progressBar"><div id="progressMarker"></div></div>
+				</div>
+				<div id="answerSection">
+					<h5>Answer</h5>
+					<p>Channel X is identical to channel A or channel B. Which one is it?</p>
+					<input type="button" id="submitA" value="X equals A" onclick="submitAnswer('A')">
+					<input type="button" id="submitB" value="X equals B" onclick="submitAnswer('B')">
+				</div>
+
+
+			</div>
+		
+		<footer>
+			<details>
+				<summary>Copyleft 2018.</summary>
+				Copyleft 2018 by Claes Johansson. No rights reserved.
+				<br>claes.johansson@protonmail.ch
+			</details>
+		</footer>
+	<script src="js/abx.js"></script>
+	</body>
+	
+</html>
